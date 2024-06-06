@@ -1,10 +1,11 @@
 :root {
 	--primary: #2863ff;
+	--primary-transparent: rgba(40, 97, 255, 0.25);
 	--text: rgb(45, 45, 45);
 }
 body {
-	min-width: 300px;
-	min-height: 400px;
+	min-width: 350px;
+	min-height: 450px;
 	font-family: sans-serif;
 	margin: 0;
 	color: var(--text);
@@ -25,16 +26,21 @@ nav img {
 
 main {
 	display: flex;
-	width: 100vw;
-	height: calc(100vh - 70px * 2);
+	flex-direction: column;
+	width: calc(100vw - 25px * 2);
+	margin-left: 25px;
+	min-height: calc(100vh - 70px * 2);
+	margin-bottom: 20px;
 	align-items: center;
 	justify-content: center;
+	gap: 35px;
 }
 
 /* Loader */
 #loader {
 	animation: spin 1s infinite;
 	width: 45px;
+	display: none; /* to be removed */
 }
 @keyframes spin {
 	from {
@@ -43,4 +49,43 @@ main {
 	to {
 		transform: rotate(360deg);
 	}
+}
+
+/* Quiz */
+#progress-bar {
+	height: 10px;
+	width: 30%;
+	border-radius: 5px;
+	background: var(--primary-transparent);
+	transition: width 800ms ease-out;
+}
+#progress-bar div {
+	height: 10px;
+	width: 50%;
+	background: var(--primary);
+	border-radius: 5px;
+}
+
+#question {
+	font-size: 20px;
+	text-align: center;
+}
+
+#options {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+#options button {
+	padding: 10px 20px;
+	text-align: left;
+	border: 1px solid var(--primary);
+	border-radius: 5px;
+	background: transparent;
+	cursor: pointer;
+}
+#options button:hover {
+	background: var(--primary);
+	color: white;
 }
