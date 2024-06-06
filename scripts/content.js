@@ -1,4 +1,5 @@
 window.addEventListener('focus', function () {
+	console.log(12345)
 	checkPage()
 })
 
@@ -16,7 +17,7 @@ function getHashnodeAuthor() {
 function checkPage() {
 	const author = getHashnodeAuthor()
 
-	if (author) {
+	if (author && chrome.runtime && !!chrome.runtime.getManifest()) {
 		chrome.runtime.sendMessage({
 			isEnabled: true,
 		})
