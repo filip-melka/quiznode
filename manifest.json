@@ -19,7 +19,7 @@
 		}
 	],
 	"action": {
-		"default_popup": "popup.html",
+		"default_popup": "",
 		"default_icon": "images/icon-16-disabled.png"
 	}
 }

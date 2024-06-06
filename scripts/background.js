@@ -1,7 +1,3 @@
-chrome.runtime.onInstalled.addListener(() => {
-	setIsEnabled(false)
-})
-
 chrome.runtime.onMessage.addListener((req) => {
 	setIsEnabled(req.isEnabled)
 })
@@ -15,15 +11,10 @@ function setIsEnabled(isEnabled) {
 	})
 
 	/* disable popup if not enabled */
-	if (!isEnabled) {
-		chrome.tabs.query(
-			{ active: true, windowType: 'normal', currentWindow: true },
-			function (d) {
-				chrome.action.setPopup({
-					tabId: d[0].id,
-					popup: '',
-				})
-			}
-		)
-	}
+	chrome.tabs.query({ active: true, currentWindow: true }, function (d) {
+		chrome.action.setPopup({
+			tabId: d[0].id,
+			popup: isEnabled ? 'popup.html' : '',
+		})
+	})
 }

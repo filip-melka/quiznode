@@ -1,5 +1,4 @@
 window.addEventListener('focus', function () {
-	console.log(12345)
 	checkPage()
 })
 
