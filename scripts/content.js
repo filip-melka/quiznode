@@ -2,6 +2,17 @@ window.addEventListener('focus', function () {
 	checkPage()
 })
 
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+	if (request.action === 'getPostDetails') {
+		sendResponse({
+			author: getHashnodeAuthor(),
+			slug: window.location.href.substring(
+				window.location.href.lastIndexOf('/') + 1
+			),
+		})
+	}
+})
+
 function getHashnodeAuthor() {
 	const links = document.getElementsByTagName('link')
 	for (let link of links) {
