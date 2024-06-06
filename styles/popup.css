@@ -95,3 +95,32 @@ main {
 	background: var(--primary);
 	color: white;
 }
+
+/* Result */
+#result {
+	width: 100%;
+	height: calc(100vh - 70px * 2);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-evenly;
+	/*display: none; /* to be removed */
+}
+
+#result p {
+	font-size: 18px;
+	font-weight: 500;
+}
+
+#result span {
+	font-size: 48px;
+}
+
+#result button {
+	cursor: pointer;
+	background: var(--primary);
+	color: white;
+	border: none;
+	padding: 6px 30px;
+	border-radius: 5px;
+}
