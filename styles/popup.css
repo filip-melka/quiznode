@@ -1,0 +1,46 @@
+:root {
+	--primary: #2863ff;
+	--text: rgb(45, 45, 45);
+}
+body {
+	min-width: 300px;
+	min-height: 400px;
+	font-family: sans-serif;
+	margin: 0;
+	color: var(--text);
+}
+
+nav {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	font-size: 15px;
+	font-weight: 600;
+	height: 70px;
+	padding-inline: 25px;
+}
+nav img {
+	height: 24px;
+}
+
+main {
+	display: flex;
+	width: 100vw;
+	height: calc(100vh - 70px * 2);
+	align-items: center;
+	justify-content: center;
+}
+
+/* Loader */
+#loader {
+	animation: spin 1s infinite;
+	width: 45px;
+}
+@keyframes spin {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
