@@ -2,8 +2,8 @@
 	--primary: #2863ff;
 	--primary-transparent: rgba(40, 97, 255, 0.25);
 	--text: rgb(45, 45, 45);
-	--correct: green;
-	--incorrect: red;
+	--correct: #319a2e;
+	--incorrect: #bd4a4a;
 }
 body {
 	min-width: 350px;
