@@ -1,12 +1,12 @@
 import { OPENAI_KEY } from '../openaiConfig.js'
 
-const exampleResponse = `
+/* const response = `
 Question: Where is the code related to the header section shown in the image located at?
 A) layout.tsx
 B) site-header.tsx
 C) footer.tsx
 D) index.tsx
-Correct answer: A
+Correct answer:
 
 Question: Which component is responsible for the search functionality in the header?
 A) MainNav
@@ -28,7 +28,7 @@ B) John Doe
 C) Jane Smith
 D) Michael Johnson
 Correct answer: A
-`
+`.replaceAll(/\[([^\]]+)\]\([^\)]+\)/g, '$1') */
 
 const questionRegex = /^Question.*$/gm
 const optionsRegex = /^([ABCD]\) ).*$/gm
@@ -46,7 +46,7 @@ Correct answer: B
 `
 
 export async function fetchQuestions(markdown) {
-	/* const message = markdown + '\n' + prompt
+	const message = markdown + '\n' + prompt
 
 	const response = await fetch('https://api.openai.com/v1/chat/completions', {
 		method: 'POST',
@@ -64,22 +64,27 @@ export async function fetchQuestions(markdown) {
 			],
 			max_tokens: 200,
 		}),
-	}).then((res) => res.json()).then(data => data.choices[0].message.content)
-
-	console.log(response) */
+	})
+		.then((res) => res.json())
+		.then((data) =>
+			data.choices[0].message.content.replaceAll(
+				/\[([^\]]+)\]\([^\)]+\)/g,
+				'$1'
+			)
+		)
 
 	const data = []
 
-	exampleResponse.split('\n\n').forEach((section) => {
-		const question = section.match(questionRegex)[0]
-		const options = section.match(optionsRegex)
-		const correctAnswer = section.match(correctAnswerRegex)[0]
+	response.split('\n\n').forEach((section) => {
+		const question = section.match(questionRegex)
+		const options = section.match(optionsRegex) || []
+		const correctAnswer = section.match(correctAnswerRegex)
 
-		if (question.length > 0 && options.length > 0 && correctAnswer.length > 0) {
+		if (question && options.length > 0 && correctAnswer) {
 			data.push({
-				question: question.substring(question.indexOf(' ') + 1),
+				question: question[0].substring(question[0].indexOf(' ') + 1),
 				options,
-				correctAnswer: correctAnswer.slice(-1),
+				correctAnswer: correctAnswer[0].slice(-1),
 			})
 		}
 	})
