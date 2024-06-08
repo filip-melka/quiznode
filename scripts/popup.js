@@ -1,3 +1,5 @@
+import { fetchMarkdown } from './hashnode.js'
+
 const data = [
 	{
 		question: 'What is Hashnode primarily known for?',
@@ -37,7 +39,7 @@ chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
 		const slug = res.slug
 
 		if (host && slug) {
-			fetchMarkdown(slug, host)
+			startQuiz(slug, host)
 		}
 	})
 })
@@ -46,43 +48,8 @@ const QUESTION = document.getElementById('question')
 const OPTIONS = document.getElementById('options')
 
 let questions
-let questionIndex
+let questionIndex = -1
 let noOfCorrectAnswers = 0
-
-async function fetchMarkdown(slug, host) {
-	const query = `#graphql
-		query Publication($slug: String!, $host: String!) { 
-			publication(host: $host){
-				post(slug: $slug){
-					content {
-						markdown
-					}
-				}
-			}
-		}
-	`
-	const variables = {
-		slug,
-		host,
-	}
-
-	const markdown = await fetch('https://gql.hashnode.com', {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json',
-			Accept: 'application/json',
-		},
-		body: JSON.stringify({ query, variables }),
-	})
-		.then((res) => res.json())
-		.then(({ data }) => data.publication.post.content.markdown)
-
-	console.log(markdown)
-}
-
-setTimeout(() => {
-	fetchQuestions()
-}, 2000)
 
 function setDisplayProperty(id, value) {
 	document.getElementById(id).style.display = value
@@ -90,14 +57,21 @@ function setDisplayProperty(id, value) {
 
 async function fetchQuestions() {
 	questions = data
-	questionIndex = -1
-	startQuiz()
 }
 
-function startQuiz() {
-	setDisplayProperty('loader', 'none')
-	nextQuestion()
-	setDisplayProperty('quiz', 'flex')
+async function startQuiz(slug, host) {
+	/* get markdown */
+	const markdown = await fetchMarkdown(slug, host)
+	console.log(markdown)
+
+	/* get questions */
+	fetchQuestions()
+
+	setTimeout(() => {
+		setDisplayProperty('loader', 'none')
+		nextQuestion()
+		setDisplayProperty('quiz', 'flex')
+	}, 2000)
 }
 
 function setProgressBar(percentage) {
