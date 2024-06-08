@@ -1,35 +1,5 @@
 import { OPENAI_KEY } from '../openaiConfig.js'
 
-/* const response = `
-Question: Where is the code related to the header section shown in the image located at?
-A) layout.tsx
-B) site-header.tsx
-C) footer.tsx
-D) index.tsx
-Correct answer:
-
-Question: Which component is responsible for the search functionality in the header?
-A) MainNav
-B) MobileNav
-C) CommandMenu
-D) ModeToggle
-Correct answer: C
-
-Question: Which file contains the code snippet for the header section?
-A) layout.tsx
-B) index.tsx
-C) site-header.tsx
-D) footer.tsx
-Correct answer: C
-
-Question: Who is the author of the article providing information on the header development?
-A) Ramu Narasinga
-B) John Doe
-C) Jane Smith
-D) Michael Johnson
-Correct answer: A
-`.replaceAll(/\[([^\]]+)\]\([^\)]+\)/g, '$1') */
-
 const questionRegex = /^Question.*$/gm
 const optionsRegex = /^([ABCD]\) ).*$/gm
 const correctAnswerRegex = /^Correct answer: [ABCD]$/gm
@@ -88,8 +58,6 @@ export async function fetchQuestions(markdown) {
 			})
 		}
 	})
-
-	console.log(data)
 
 	return data
 }

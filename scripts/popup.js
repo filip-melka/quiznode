@@ -23,11 +23,6 @@ function setDisplayProperty(id, value) {
 	document.getElementById(id).style.display = value
 }
 
-/* startQuiz(
-	'shadcnui-codebase-analysis-site-headertsx-explained',
-	'ramunarasinga.hashnode.dev'
-) */
-
 async function startQuiz(slug, host) {
 	/* get markdown */
 	const markdown = await fetchMarkdown(slug, host)
