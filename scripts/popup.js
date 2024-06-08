@@ -31,11 +31,11 @@ const data = [
 	},
 ]
 
-/* chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
 	chrome.tabs.sendMessage(tabs[0].id, { action: 'getPostDetails' }, (res) => {
 		console.log(res)
 	})
-}) */
+})
 
 const QUESTION = document.getElementById('question')
 const OPTIONS = document.getElementById('options')
