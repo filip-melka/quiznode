@@ -19,8 +19,8 @@
 		}
 	],
 	"action": {
-		"default_popup": "",
-		"default_icon": "images/icon-16-disabled.png"
+		"default_popup": "popup.html",
+		"default_icon": "images/icon-16.png"
 	},
 	"commands": {
 		"_execute_action": {

@@ -2,6 +2,8 @@
 	--primary: #2863ff;
 	--primary-transparent: rgba(40, 97, 255, 0.25);
 	--text: rgb(45, 45, 45);
+	--correct: green;
+	--incorrect: red;
 }
 body {
 	min-width: 350px;
@@ -30,7 +32,6 @@ nav img {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	display: none; /* to be removed */
 }
 #loader img {
 	animation: spin 1s infinite;
@@ -47,7 +48,6 @@ nav img {
 
 /* Quiz */
 #quiz {
-	display: flex;
 	flex-direction: column;
 	align-items: center;
 	gap: 35px;
@@ -58,13 +58,13 @@ nav img {
 	width: 30%;
 	border-radius: 5px;
 	background: var(--primary-transparent);
-	transition: width 800ms ease-out;
 }
 #progress-bar div {
 	height: 10px;
-	width: 50%;
+	width: 0;
 	background: var(--primary);
 	border-radius: 5px;
+	transition: width 800ms ease-out;
 }
 
 #question {
@@ -90,6 +90,19 @@ nav img {
 	background: var(--primary);
 	color: white;
 }
+#options button.correct {
+	background: var(--correct);
+	border-color: var(--correct);
+	color: white;
+}
+#options button.incorrect {
+	background: var(--incorrect);
+	border-color: var(--incorrect);
+	color: white;
+}
+#options.disabled button {
+	pointer-events: none;
+}
 
 #next-btn {
 	cursor: pointer;
@@ -105,11 +118,10 @@ nav img {
 #result {
 	width: 100%;
 	height: calc(100vh - 70px - 30px);
-	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: space-evenly;
-	display: none; /* to be removed */
+	display: none;
 }
 
 #result p {
@@ -117,7 +129,7 @@ nav img {
 	font-weight: 500;
 }
 
-#result span {
+#result span:first-of-type {
 	font-size: 48px;
 }
 

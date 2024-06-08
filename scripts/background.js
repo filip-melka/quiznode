@@ -14,7 +14,7 @@ function setIsEnabled(isEnabled) {
 	chrome.tabs.query({ active: true, currentWindow: true }, function (d) {
 		chrome.action.setPopup({
 			tabId: d[0].id,
-			popup: isEnabled ? 'popup.html' : '',
+			popup: isEnabled ? 'popup.html' : 'popup.html',
 		})
 	})
 }

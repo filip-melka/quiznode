@@ -27,13 +27,9 @@ function getHashnodeAuthor() {
 function checkPage() {
 	const author = getHashnodeAuthor()
 
-	if (author && chrome.runtime && !!chrome.runtime.getManifest()) {
+	if (chrome.runtime?.id) {
 		chrome.runtime.sendMessage({
-			isEnabled: true,
-		})
-	} else {
-		chrome.runtime.sendMessage({
-			isEnabled: false,
+			isEnabled: author !== null,
 		})
 	}
 }
