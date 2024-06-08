@@ -1,37 +1,5 @@
 import { fetchMarkdown } from './hashnode.js'
-
-const data = [
-	{
-		question: 'What is Hashnode primarily known for?',
-		options: [
-			'A) Social networking',
-			'B) Blogging platform',
-			'C) E-commerce',
-			'D) Cloud storage',
-		],
-		correctAnswer: 'B',
-	},
-	{
-		question: 'Which of the following features is NOT offered by Hashnode?',
-		options: [
-			'A) Custom domain support',
-			'B) Built-in newsletter integration',
-			'C) Code collaboration tools',
-			'D) SEO optimization features',
-		],
-		correctAnswer: 'C',
-	},
-	{
-		question: 'Which of these is a key benefit of using Hashnode for blogging?',
-		options: [
-			'A) Access to an exclusive audience',
-			'B) Requires no coding knowledge to set up',
-			'C) Offers cloud storage solutions',
-			'D) Provides e-commerce integration',
-		],
-		correctAnswer: 'B',
-	},
-]
+import { fetchQuestions } from './openai.js'
 
 chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
 	chrome.tabs.sendMessage(tabs[0].id, { action: 'getPostDetails' }, (res) => {
@@ -55,23 +23,18 @@ function setDisplayProperty(id, value) {
 	document.getElementById(id).style.display = value
 }
 
-async function fetchQuestions() {
-	questions = data
-}
-
 async function startQuiz(slug, host) {
 	/* get markdown */
 	const markdown = await fetchMarkdown(slug, host)
 	console.log(markdown)
 
 	/* get questions */
-	fetchQuestions()
+	questions = await fetchQuestions()
 
-	setTimeout(() => {
-		setDisplayProperty('loader', 'none')
-		nextQuestion()
-		setDisplayProperty('quiz', 'flex')
-	}, 2000)
+	/* show quiz */
+	setDisplayProperty('loader', 'none')
+	nextQuestion()
+	setDisplayProperty('quiz', 'flex')
 }
 
 function setProgressBar(percentage) {
@@ -86,7 +49,7 @@ function nextQuestion() {
 
 	questionIndex++
 
-	if (questionIndex < data.length) {
+	if (questionIndex < questions.length) {
 		setProgressBar((questionIndex + 1) / questions.length)
 
 		/* set questions */
