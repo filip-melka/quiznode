@@ -6,6 +6,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 	if (request.action === 'getPostDetails') {
 		sendResponse({
 			author: getHashnodeAuthor(),
+			host: window.location.host,
 			slug: window.location.href.substring(
 				window.location.href.lastIndexOf('/') + 1
 			),
