@@ -1,7 +1,7 @@
 import { fetchMarkdown } from './hashnode.js'
 import { fetchQuestions } from './openai.js'
 
-chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+/* chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
 	chrome.tabs.sendMessage(tabs[0].id, { action: 'getPostDetails' }, (res) => {
 		const host = res.host
 		const slug = res.slug
@@ -10,7 +10,7 @@ chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
 			startQuiz(slug, host)
 		}
 	})
-})
+}) */
 
 const QUESTION = document.getElementById('question')
 const OPTIONS = document.getElementById('options')
@@ -23,13 +23,17 @@ function setDisplayProperty(id, value) {
 	document.getElementById(id).style.display = value
 }
 
+startQuiz(
+	'shadcnui-codebase-analysis-site-headertsx-explained',
+	'ramunarasinga.hashnode.dev'
+)
+
 async function startQuiz(slug, host) {
 	/* get markdown */
 	const markdown = await fetchMarkdown(slug, host)
-	console.log(markdown)
 
 	/* get questions */
-	questions = await fetchQuestions()
+	questions = await fetchQuestions(markdown)
 
 	/* show quiz */
 	setDisplayProperty('loader', 'none')
