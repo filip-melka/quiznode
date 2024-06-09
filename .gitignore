@@ -1,2 +1,6 @@
 # API Key
 openaiConfig.js
+.env
+
+# Node Modules
+node_modules
