@@ -1,43 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<link rel="stylesheet" href="styles/popup.css" />
-		<script src="scripts/popup.js" type="module" defer></script>
-	</head>
-	<body>
-		<nav>
-			<img src="images/icon-32.png" alt="logo" />
-			<p>quiznode</p>
-		</nav>
-		<main>
-			<!-- Loader -->
-			<section id="loader">
-				<img src="images/loader.svg" alt="loader" />
-			</section>
+    <head>
+        <link rel="stylesheet" href="styles/popup.css" />
+        <script src="scripts/popup.js" type="module" defer></script>
+    </head>
+    <body>
+        <nav>
+            <img src="images/icon-32.png" alt="logo" />
+            <p>quiznode</p>
+        </nav>
+        <main>
+            <!-- Loader -->
+            <section id="loader">
+                <img src="images/loader.svg" alt="loader" />
+            </section>
 
-			<!-- Quiz -->
-			<section id="quiz">
-				<div id="progress-bar"><div></div></div>
+            <!-- Quiz -->
+            <section id="quiz">
+                <div id="progress-bar"><div></div></div>
 
-				<div id="question">What is Hashnode primarily used for?</div>
+                <div id="question">What is Hashnode primarily used for?</div>
 
-				<div id="options">
-					<button>A) Social networking</button>
-					<button>B) Blogging platform for developers</button>
-					<button>C) E-commerce</button>
-					<button>D) Online education</button>
-				</div>
-				<button id="next-btn">Next</button>
-			</section>
+                <div id="options">
+                    <button>A) Social networking</button>
+                    <button>B) Blogging platform for developers</button>
+                    <button>C) E-commerce</button>
+                    <button>D) Online education</button>
+                </div>
+                <button id="next-btn">Next</button>
+            </section>
 
-			<!-- Result -->
-			<section id="result">
-				<p>
-					<span>3</span>
-					<span>/ 5</span>
-				</p>
-				<button id="close-btn">OK</button>
-			</section>
-		</main>
-	</body>
+            <!-- Result -->
+            <section id="result">
+                <p>
+                    <span>3</span>
+                    <span>/ 5</span>
+                </p>
+                <div id="result-bar"></div>
+                <button id="close-btn">OK</button>
+            </section>
+        </main>
+    </body>
 </html>
