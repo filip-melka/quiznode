@@ -10,7 +10,7 @@ As a software development student, I often read technical articles on Hashnode. 
 
 ## Demo
 
-https://github.com/filip-melka/quiznode/assets/173664063/e2cc24f6-ba57-4979-8d88-5d111a69b384
+https://github.com/filip-melka/quiznode/assets/173664063/acffdf8b-e01c-4afd-bd54-6009187f35cc
 
 ## Installation
 
